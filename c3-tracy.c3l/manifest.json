@@ -1,0 +1,9 @@
+{
+  "provides" : "tracy",
+  "targets" : {
+    "windows-x64" : {
+    		"wincrt": "static",
+        "linked-libraries" : ["TracyClient"]
+    	}
+  }
+}
