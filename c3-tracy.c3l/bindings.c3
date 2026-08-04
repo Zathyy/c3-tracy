@@ -2,93 +2,93 @@ module tracy;
 
 constdef PlotFormatEnum
 {
-    TRACY_PLOT_FORMAT_NUMBER,
-    TRACY_PLOT_FORMAT_MEMORY,
-    TRACY_PLOT_FORMAT_PERCENTAGE,
-    TRACY_PLOT_FORMAT_WATT
+	TRACY_PLOT_FORMAT_NUMBER,
+	TRACY_PLOT_FORMAT_MEMORY,
+	TRACY_PLOT_FORMAT_PERCENTAGE,
+	TRACY_PLOT_FORMAT_WATT
 }
 
 constdef MessageSeverity
 {
-    TRACY_MESSAGE_SEVERITY_TRACE,   // Broadly track variable states and events in the software program.
-    TRACY_MESSAGE_SEVERITY_DEBUG,   // Describes variable states and details about specific internal events in the software, that are useful for investigations.
-    TRACY_MESSAGE_SEVERITY_INFO,    // Describes normal events, which inform on the expected progress and state of your software.
-    TRACY_MESSAGE_SEVERITY_WARNING, // Describes potentially dangerous situations caused by unexpected events and states.
-    TRACY_MESSAGE_SEVERITY_ERROR,   // Describes the occurance of unexpected behavior. Does not interrupt the execution of the software.
-    TRACY_MESSAGE_SEVERITY_FATAL,   // Describes a critical event that will lead to a software failure/crash.
+	TRACY_MESSAGE_SEVERITY_TRACE,   // Broadly track variable states and events in the software program.
+	TRACY_MESSAGE_SEVERITY_DEBUG,   // Describes variable states and details about specific internal events in the software, that are useful for investigations.
+	TRACY_MESSAGE_SEVERITY_INFO,    // Describes normal events, which inform on the expected progress and state of your software.
+	TRACY_MESSAGE_SEVERITY_WARNING, // Describes potentially dangerous situations caused by unexpected events and states.
+	TRACY_MESSAGE_SEVERITY_ERROR,   // Describes the occurance of unexpected behavior. Does not interrupt the execution of the software.
+	TRACY_MESSAGE_SEVERITY_FATAL,   // Describes a critical event that will lead to a software failure/crash.
 }
 
 struct SourceLocationData
 {
-    ZString name;
-    ZString function;
-    ZString file;
-    uint line;
-    uint color;
+	ZString name;
+	ZString function;
+	ZString file;
+	uint line;
+	uint color;
 }
 
 struct ZoneContext
 {
-    uint id;
-    int active;
-    ulong connectionId @if($feat(TRACY_ON_DEMAND));
+	uint id;
+	int active;
+	ulong connectionId @if($feat(TRACY_ON_DEMAND));
 }
 
 struct GpuTimeData
 {
-    long gpuTime;
-    ushort queryId;
-    char context;
+	long gpuTime;
+	ushort queryId;
+	char context;
 }
 
 struct GpuZoneBeginData
 {
-    ulong srcloc;
-    ushort queryId;
-    char context;
+	ulong srcloc;
+	ushort queryId;
+	char context;
 }
 
 struct GpuZoneBeginCallstackData
 {
-    ulong srcloc;
-    int depth;
-    ushort queryId;
-    char context;
+	ulong srcloc;
+	int depth;
+	ushort queryId;
+	char context;
 }
 
 struct GpuZoneEndData
 {
-    ushort queryId;
-    char context;
+	ushort queryId;
+	char context;
 }
 
 struct GpuNewContextData
 {
-    ulong gpuTime;
-    float period;
-    char context;
-    char flags;
-    char type;
+	ulong gpuTime;
+	float period;
+	char context;
+	char flags;
+	char type;
 }
 
 struct GpuContextNameData
 {
 	char context;
-    ZString name;
-    ushort len;
+	ZString name;
+	ushort len;
 }
 
 struct GpuCalibrationData
 {
-    long gpuTime;
-    long cpuDelta;
-    char context;
+	long gpuTime;
+	long cpuDelta;
+	char context;
 }
 
 struct GpuTimeSyncData
 {
-    long gpuTime;
-    char context;
+	long gpuTime;
+	char context;
 }
 
 extern fn void set_thread_name(ZString name) @cname("___tracy_set_thread_name");
