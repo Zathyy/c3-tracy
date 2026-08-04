@@ -1,7 +1,5 @@
 module tracy;
 
-import std::io;
-
 fn void frame_mark(ZString str) @inline
 {
 	$if $defined($feat(TRACY_ENABLE)):

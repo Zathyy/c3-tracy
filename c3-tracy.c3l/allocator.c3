@@ -1,17 +1,13 @@
-module tracy_alloc;
-
-import tracy;
+module tracy;
 
 struct TracyAllocator (Allocator)
 {
 	Allocator backing_allocator;
 }
 
-fn TracyAllocator init(Allocator backing_alloc)
+fn void TracyAllocator.init(&self, Allocator backing_allocator)
 {
-	return {
-		.backing_allocator = backing_alloc
-	};
+	self.backing_allocator = backing_allocator;
 }
 
 fn void*? TracyAllocator.acquire(&self, sz bytes, AllocInitType init_type, sz alignment) @dynamic

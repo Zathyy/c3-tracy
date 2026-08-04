@@ -1,7 +1,6 @@
 module c3_tracy;
 import std::io;
 import std::thread;
-import tracy_alloc;
 
 import tracy;
 
@@ -17,7 +16,7 @@ fn int main(String[] args) => @pool()
 
 fn void test() => @tracy("test")
 {
-	TracyAllocator alloc = tracy_alloc::init(tmem);
+	TracyAllocator alloc; alloc.init(tmem);
 	Allocator allocator = &alloc;
 
 	for (int i = 0; i < 100; i++)
