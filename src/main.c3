@@ -7,7 +7,7 @@ import tracy;
 fn int main(String[] args) => @pool()
 {
 	tracy::set_thread_name("Main");
-	defer tracy::message("Exit");
+	defer tracy::message(TRACY_MESSAGE_SEVERITY_INFO, "Exit");
 
 	test();
 

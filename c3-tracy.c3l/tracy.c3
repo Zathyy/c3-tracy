@@ -1,5 +1,7 @@
 module tracy;
 
+const int TRACY_CALLSTACK_DEPTH @weak = 3;
+
 fn void frame_mark(ZString str) @inline
 {
 	$if $defined($feat(TRACY_ENABLE)):
@@ -41,10 +43,10 @@ macro @tracy(ZString name, uint color = 0; @body()) @builtin
 	@body();
 }
 
-macro message(String fmt, ...) => @pool()
+macro message(MessageSeverity severity, String fmt, ...) => @pool()
 {
 	$if $defined($feat(TRACY_ENABLE)):
 	ZString str = string::tformat_zstr(fmt, ...$vaarg);
-	emit_message(str, (usz)str.len(), 0);
+	emit_log_string(severity, 0, TRACY_CALLSTACK_DEPTH, (usz)str.len(), str);
 	$endif
 }
